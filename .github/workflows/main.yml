@@ -17,6 +17,8 @@ jobs:
   BuildAndPush:
     runs-on: ubuntu-latest
     name: Build and Push
+    needs:
+      - Test
     steps:
       - name: Checkout 
         uses: actions/checkout@v2
