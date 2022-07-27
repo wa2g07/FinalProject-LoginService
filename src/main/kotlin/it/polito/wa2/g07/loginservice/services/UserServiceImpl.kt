@@ -29,8 +29,6 @@ class UserServiceImpl(
   @Value("\${secrets.jwtkey}")
   lateinit var b64Key: String
 
-  //val b64Key = "TWMjLVp5MmQkRnhzRk5oOEdiNTVTczJQQGRrOUVHI3lUcjU/VVdDKw=="
-
   lateinit var key: SecretKey
 
   @PostConstruct
