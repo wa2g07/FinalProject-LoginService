@@ -1,0 +1,10 @@
+services:
+  loginservicedb:
+    image: ghcr.io/wa2g07/postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_LOGIN_SERVICE_DB=loginservice
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    
