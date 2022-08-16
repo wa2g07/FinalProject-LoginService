@@ -34,7 +34,7 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: ghcr.io/wa2g07/login-service:${{ github.sha }}
+          tags: ghcr.io/wa2g07/login-service:${{ github.sha }}, ghcr.io/wa2g07/login-service:latest
   DeploymentTrigger:
     runs-on: ubuntu-latest
     name: Deployment Trigger
