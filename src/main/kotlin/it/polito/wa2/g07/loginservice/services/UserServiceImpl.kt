@@ -52,7 +52,7 @@ class UserServiceImpl(
 
     val user = User(
       username = userDTO.username,
-      password = userDTO.password,
+      password = BCrypt.hashpw(userDTO.password, BCrypt.gensalt()),
       email = userDTO.email
     )
     val u = userRepository.save(
@@ -98,7 +98,7 @@ class UserServiceImpl(
 
     val user = User(
       username = userDTO.username,
-      password = userDTO.password,
+      password = BCrypt.hashpw(userDTO.password, BCrypt.gensalt()),
       email = userDTO.email,
       activated = true,
       roles = userRole.printableName
@@ -160,5 +160,13 @@ class UserServiceImpl(
       )
     }
     throw IllegalArgumentException()
+  }
+
+  override fun updateUserPassword(userDTO: UserDTO, update: UpdatePassword) {
+    val u = userRepository.getUserByUsername(userDTO.username)
+    if (u != null && BCrypt.checkpw(update.oldpassword, u.password) && checkPassword(update.newpassword)) {
+      u.password = BCrypt.hashpw(update.newpassword, BCrypt.gensalt())
+    }
+    else throw IllegalArgumentException()
   }
 }
