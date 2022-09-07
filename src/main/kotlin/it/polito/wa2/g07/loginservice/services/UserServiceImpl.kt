@@ -52,7 +52,7 @@ class UserServiceImpl(
 
     val user = User(
       username = userDTO.username,
-      password = BCrypt.hashpw(userDTO.password, BCrypt.gensalt()),
+      password = userDTO.password,
       email = userDTO.email
     )
     val u = userRepository.save(
@@ -98,7 +98,7 @@ class UserServiceImpl(
 
     val user = User(
       username = userDTO.username,
-      password = BCrypt.hashpw(userDTO.password, BCrypt.gensalt()),
+      password = userDTO.password,
       email = userDTO.email,
       activated = true,
       roles = userRole.printableName
