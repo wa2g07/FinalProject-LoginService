@@ -75,12 +75,12 @@ class RegistrationController(val service: UserService) {
 
     @PostMapping("/user/login")
     @ResponseStatus(HttpStatus.OK)
-    fun login(@RequestBody body: LoginUser): String {
+    fun login(@RequestBody body: LoginUser): ReturnJwt {
 
         try {
             val jwt = service.loginUser(UserDTO(username = body.username, password = body.password))
 
-            return jwt
+            return ReturnJwt(jwt = jwt)
         } catch (e: Exception) {
             throw ResponseStatusException(HttpStatus.FORBIDDEN)
         }
